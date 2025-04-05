@@ -1,0 +1,2 @@
+-> Messes w/ canvas and WebGL
+-> Changes useragent and other properties of the navigator

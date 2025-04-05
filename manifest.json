@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+  "name": "Prism",
+  "version": "1.0",
+  "description": "An all in one extension for antifingerprinting",
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "activeTab",
+    "<all_urls>"
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js", "ua.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": ["canvas.js"]
+}
