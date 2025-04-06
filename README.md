@@ -13,3 +13,5 @@
 -> Canvas and webgl randomization     
 
 Join the discord! https://discord.gg/YWKgdAqc
+
+![GitHubViewsCounter](https://openlabx.com/githubviewscounter/api/gitvcr.php?username=openlab-x&repository=OpenQRCode&theme=light)
