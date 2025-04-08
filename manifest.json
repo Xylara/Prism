@@ -20,5 +20,5 @@
       "run_at": "document_start"
     }
   ],
-  "web_accessible_resources": ["canvas.js"]
+  "web_accessible_resources": ["canvas.js", "navigator.js"]
 }

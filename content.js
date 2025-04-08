@@ -7,3 +7,4 @@ function injectS(file) {
 // with zero issues
 // i cant just inject a script tag at all
 injectS("canvas.js");
+injectS("navigator.js");

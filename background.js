@@ -33,10 +33,9 @@ if (spltfm == "Mozilla/5.0 (Windows NT 10.0") {
 
 chrome.webRequest.onBeforeSendHeaders.addListener(
   function(details) {
-    const userAgent = randNav.userAgent
     for (let i = 0; i < details.requestHeaders.length; ++i) {
       if (details.requestHeaders[i].name === 'User-Agent') {
-        details.requestHeaders[i].value = userAgent;
+        details.requestHeaders[i].value = randNav.userAgent;
         break;
       }
     }
@@ -49,7 +48,6 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 chrome.tabs.onRemoved.addListener((tabId) => {
   delete pageUserAgents[tabId];
 });
-// that moment when most secure browsers disable serviceworkers ( kill me )
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "getNavigator") {
       sendResponse({ userAgent: randNav.userAgent, platform: randNav.platform });
