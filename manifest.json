@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Prism",
   "version": "1.0",
   "description": "An all in one extension for antifingerprinting",
