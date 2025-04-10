@@ -10,7 +10,7 @@
     "<all_urls>"
   ],
   "background": {
-    "scripts": ["background.js"],
+    "service_worker": ["background.js"],
     "persistent": true
   },
   "content_scripts": [
