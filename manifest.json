@@ -10,7 +10,7 @@
     "<all_urls>"
   ],
   "background": {
-    "service_worker": ["background.js"]
+    "service_worker": "background.js"
   },
   "content_scripts": [
     {
@@ -19,5 +19,10 @@
       "run_at": "document_start"
     }
   ],
-  "web_accessible_resources": ["canvas.js", "navigator.js"]
+  "web_accessible_resources": [
+    {
+      "resources": ["canvas.js", "navigator.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }
