@@ -10,35 +10,36 @@ const userAgents = [
 ];
 
 let pageUserAgents = {};
+
 function getRandomUA(tabId) {
   if (!pageUserAgents[tabId]) {
-      pageUserAgents[tabId] = userAgents[Math.floor(Math.random() * userAgents.length)];
+    pageUserAgents[tabId] = userAgents[Math.floor(Math.random() * userAgents.length)];
   }
   return pageUserAgents[tabId];
 }
-let randNav = {}
-randNav.userAgent = getRandomUA()
-let spltfm = randNav.userAgent.split(";")[0]
-if (spltfm == "Mozilla/5.0 (Windows NT 10.0") {
-  randNav.platform = "Win32"
-} else if (spltfm == "Mozilla/5.0 (X11") {
-  randNav.platform = "Linux x86_64"
-} else if (spltfm == "Mozilla/5.0 (Macintosh" ) {
-  randNav.platform = "Macintosh"
-} else {
-  randNav.platform = '' 
-}
-// why the FUCK does firefox use browser and chrome uses chrome 
-// WHYYY 
 
 chrome.webRequest.onBeforeSendHeaders.addListener(
   function(details) {
+    let userAgent = getRandomUA(details.tabId);
+    let platform = '';
+
+    if (userAgent.includes("Windows NT 10.0")) {
+      platform = "Win32";
+    } else if (userAgent.includes("X11")) {
+      platform = "Linux x86_64";
+    } else if (userAgent.includes("Macintosh")) {
+      platform = "Macintosh";
+    } else {
+      platform = '';
+    }
+
     for (let i = 0; i < details.requestHeaders.length; ++i) {
       if (details.requestHeaders[i].name === 'User-Agent') {
-        details.requestHeaders[i].value = randNav.userAgent;
+        details.requestHeaders[i].value = userAgent;
         break;
       }
     }
+
     return { requestHeaders: details.requestHeaders };
   },
   { urls: ["<all_urls>"] },
@@ -48,8 +49,22 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 chrome.tabs.onRemoved.addListener((tabId) => {
   delete pageUserAgents[tabId];
 });
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "getNavigator") {
-      sendResponse({ userAgent: randNav.userAgent, platform: randNav.platform });
+    let userAgent = getRandomUA(sender.tab.id);
+    let platform = '';
+
+    if (userAgent.includes("Windows NT 10.0")) {
+      platform = "Win32";
+    } else if (userAgent.includes("X11")) {
+      platform = "Linux x86_64";
+    } else if (userAgent.includes("Macintosh")) {
+      platform = "Macintosh";
+    } else {
+      platform = '';
+    }
+
+    sendResponse({ userAgent: userAgent, platform: platform });
   }
 });
