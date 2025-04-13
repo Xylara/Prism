@@ -11,5 +11,6 @@
 -> User agent randomization     
 -> Swapping some features of navigator      
 -> Canvas and webgl randomization     
+-> Spoofing max width and height
 
 Join the discord! https://discord.gg/YWKgdAqc     
