@@ -1,4 +1,4 @@
-// just nuke it all
+// for hardcoded values
 const spoofWidth = 1920;
 const spoofHeight = 1080; 
 const deviceMemory = 16;
@@ -29,26 +29,14 @@ Object.defineProperty(navigator, 'vendorSub', {
     configurable: true
 });
 
-Object.defineProperty(screen, 'width', {
-    get: function() {
-        return spoofWidth;
-    }
-});
-  
-Object.defineProperty(screen, 'height', {
-    get: function() {
-    return spoofHeight;
-    }
-});
-  
-Object.defineProperty(screen, 'availWidth', {
-    get: function() {
-        return spoofWidth;
-    }
-});
-  
-Object.defineProperty(screen, 'availHeight', {
-    get: function() {
-        return spoofHeight;
-    }
+Object.defineProperty(window, 'screen', {
+    value: {
+        width: spoofWidth,
+        height: spoofHeight,
+        availWidth: spoofWidth, 
+        availHeight: spoofHeight,
+        colorDepth: 24,
+        pixelDepth: 24
+    },
+    writable: false
 });
